@@ -16,9 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'text_description')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'start_date')->textInput() ?>
+    <?= $form->field($model,'start_date')->widget(yii\jui\DatePicker::className(),['clientOptions' => ['defaultDate' => '2014-01-01']]) ?>
 
-    <?= $form->field($model, 'end_date')->textInput() ?>
+    <?= $form->field($model,'end_date')->widget(yii\jui\DatePicker::className(),['clientOptions' => ['defaultDate' => '2014-01-01']]) ?>
 
     <?= $form->field($model, 'id_series')->textInput() ?>
 
