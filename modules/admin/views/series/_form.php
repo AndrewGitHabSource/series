@@ -16,7 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'date')->textInput() ?>
+
+
+    <?= $form->field($model,'date')->widget(yii\jui\DatePicker::className(),['clientOptions' => ['defaultDate' => '2014-01-01']]) ?>
 
     <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 

@@ -29,7 +29,7 @@ class Series extends \yii\db\ActiveRecord
     }
 
     public function getSeason(){
-        return $this->hasMany(Season::tableName(), ['id_series' => 'id']);
+        return $this->hasMany(Season::className(), ['id_series' => 'id']);
     }
 
     /**

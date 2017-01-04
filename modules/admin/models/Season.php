@@ -27,7 +27,7 @@ class Season extends \yii\db\ActiveRecord
     }
 
     public function getSeries(){
-        return $this->hasOne(Series::tableName(), ['id' => 'id_series']);
+        return $this->hasOne(Series::className(), ['id' => 'id_series']);
     }
 
 
