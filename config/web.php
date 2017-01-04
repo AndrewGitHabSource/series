@@ -7,12 +7,10 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'defaultRoute' => 'main/index',
-//    'user' => [
-//        'loginUrl' => ['main/login'],
-//    ],
     'modules' => [
         'admin' => [
             'class' => 'app\modules\admin\Modules',
+            'defaultRoute' => 'series/index',
         ],
     ],
     'components' => [
