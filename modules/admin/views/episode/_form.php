@@ -29,7 +29,7 @@ use mihaildev\ckeditor\CKEditor;
         <label>Сезон</label>
         <select class="form-control" name="Episode[id_season]">
             <?php foreach ($model->getAllSeasons() as $item){ ?>
-                <option value="<?php echo $item->id ?>"><?php echo $item->title ?></option>
+                <option <?php if($item['id'] == $model->id_season){ echo 'selected'; } ?> value="<?php echo $item['id'] ?>"><?php echo $item['title'] . '( Сериал '. $item['name'] . ' )' ?></option>
             <?php } ?>
         </select>
     </div>

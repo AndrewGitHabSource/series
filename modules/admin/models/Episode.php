@@ -1,6 +1,7 @@
 <?php
 
 namespace app\modules\admin\models;
+use yii\data\SqlDataProvider;
 
 use Yii;
 
@@ -30,8 +31,13 @@ class Episode extends \yii\db\ActiveRecord
     }
 
     public function getAllSeasons(){
-        $data = Season::find()->all();
-        return $data;
+        $query = 'SELECT ses.id, ses.title, ser.name
+            FROM Season ses
+       LEFT JOIN series ser ON ser.id = ses.id_series';
+
+        return Yii::$app->db
+            ->createCommand($query)
+            ->queryAll();
     }
 
     /**
