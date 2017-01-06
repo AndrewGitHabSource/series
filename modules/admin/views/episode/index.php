@@ -38,7 +38,18 @@ $this->params['breadcrumbs'][] = $this->title;
             
             'title',
             'description_episode:html',
-            'id_season',
+//            'id_season',
+
+            [
+              'attribute' => 'id_season',
+               'value' => function($data){
+                   if($data->season){
+                       return $data->season->title;
+                   }
+               }
+
+            ],
+
             'rating',
 
             ['class' => 'yii\grid\ActionColumn'],

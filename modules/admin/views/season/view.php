@@ -35,7 +35,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'text_description:html',
             'start_date',
             'end_date',
-            'id_series',
+
+            [
+                'attribute' => 'id_series',
+                'value' => $model->series->name
+
+            ],
+
             'keywords',
             'description',
         ],

@@ -14,7 +14,7 @@ $this->title = 'My Yii Application';
 
                     <?php $mainImg = $item->getImage(); ?>
 
-                    <?= Html::img($mainImg->getUrl(), ['alt' => ''])?>
+                    <?= Html::img($mainImg->getUrl('140x200'), ['alt' => ''])?>
 
                     <a href="<?= \yii\helpers\Url::to(['series/index', 'id' => $item->id]) ?>">Смотреть</a>
 

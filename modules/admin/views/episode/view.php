@@ -31,7 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'title',
             'description_episode:html',
-            'id_season',
+
+            [
+                'attribute' => 'id_season',
+                'value' => $model->season->title
+            ],
+
             'rating',
         ],
     ]) ?>

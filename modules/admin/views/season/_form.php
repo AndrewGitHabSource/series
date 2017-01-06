@@ -32,7 +32,18 @@ use mihaildev\ckeditor\CKEditor;
 
     <?= $form->field($model, 'end_date')->widget(yii\jui\DatePicker::className(), ['clientOptions' => ['defaultDate' => '2014-01-01']]) ?>
 
-    <?= $form->field($model, 'id_series')->textInput() ?>
+
+
+    <div class="form-group field-select has-success">
+        <label>Сериал</label>
+        <select class="form-control" name="Season[id_series]">
+            <?php foreach ($model->getAllSeries() as $item){ ?>
+                <option value="<?php echo $item->id ?>"><?php echo $item->name ?></option>
+            <?php } ?>
+        </select>
+    </div>
+
+
 
     <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
 

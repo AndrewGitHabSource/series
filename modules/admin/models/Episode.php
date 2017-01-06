@@ -25,6 +25,15 @@ class Episode extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getSeason(){
+        return $this->hasOne(Season::className(), ['id' => 'id_season']);
+    }
+
+    public function getAllSeasons(){
+        $data = Season::find()->all();
+        return $data;
+    }
+
     /**
      * @inheritdoc
      */
@@ -55,7 +64,7 @@ class Episode extends \yii\db\ActiveRecord
             'id' => 'ID',
             'title' => 'Название',
             'description_episode' => 'Описание',
-            'id_season' => 'Id Season',
+            'id_season' => 'Сезон',
             'image' => 'Изображение',
             'rating' => 'Рейтинг',
         ];

@@ -30,6 +30,16 @@ class Season extends \yii\db\ActiveRecord
         return $this->hasOne(Series::className(), ['id' => 'id_series']);
     }
 
+    public function getAllSeries(){
+        $data = Series::find()->all();
+        return $data;
+    }
+
+    public function getEpisode(){
+        return $this->hasMany(Episode::className(), ['id_season' => 'id']);
+    }
+
+
 
     /**
      * @inheritdoc

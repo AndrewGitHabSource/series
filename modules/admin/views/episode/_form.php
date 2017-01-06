@@ -25,7 +25,14 @@ use mihaildev\ckeditor\CKEditor;
     ]);
     ?>
 
-    <?= $form->field($model, 'id_season')->textInput() ?>
+    <div class="form-group field-select has-success">
+        <label>Сезон</label>
+        <select class="form-control" name="Episode[id_season]">
+            <?php foreach ($model->getAllSeasons() as $item){ ?>
+                <option value="<?php echo $item->id ?>"><?php echo $item->title ?></option>
+            <?php } ?>
+        </select>
+    </div>
 
     <?= $form->field($model, 'image')->fileInput() ?>
 
