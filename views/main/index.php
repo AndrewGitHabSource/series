@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
+use yii\helpers\Html;
 
 $this->title = 'My Yii Application';
 ?>
@@ -11,7 +12,9 @@ $this->title = 'My Yii Application';
                 <div class="series col-lg-2">
                     <h4><?php echo $item->name ?></h4>
 
-                    <img src="<?php echo $item->image ?>">
+                    <?php $mainImg = $item->getImage(); ?>
+
+                    <?= Html::img($mainImg->getUrl(), ['alt' => ''])?>
 
                     <a href="<?= \yii\helpers\Url::to(['series/index', 'id' => $item->id]) ?>">Смотреть</a>
 

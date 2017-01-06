@@ -20,6 +20,20 @@ use Yii;
  */
 class Series extends \yii\db\ActiveRecord
 {
+
+    public $image;
+
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ]
+        ];
+    }
+
+
+
     /**
      * @inheritdoc
      */
@@ -38,11 +52,12 @@ class Series extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'text', 'date', 'keywords', 'description', 'image', 'quality', 'directors', 'actors'], 'required'],
+            [['name', 'text', 'date', 'keywords', 'description', 'quality', 'directors', 'actors'], 'required'],
             [['text'], 'string'],
             [['date'], 'safe'],
-            [['name', 'keywords', 'description', 'image', 'directors', 'actors'], 'string', 'max' => 255],
+            [['name', 'keywords', 'description', 'directors', 'actors'], 'string', 'max' => 255],
             [['quality'], 'string', 'max' => 10],
+            [['image'], 'file', 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -58,10 +73,23 @@ class Series extends \yii\db\ActiveRecord
             'date' => 'Date',
             'keywords' => 'Keywords',
             'description' => 'Description',
-            'image' => 'Image',
             'quality' => 'Quality',
             'directors' => 'Directors',
             'actors' => 'Actors',
         ];
     }
+
+    public function upload(){
+        if($this->validate()){
+            $path = 'images/store/' . $this->image->baseName . '.' . $this->image->extension;
+            $this->image->saveAs($path);
+            $this->attachImage($path, true);
+            @unlink($path);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
 }

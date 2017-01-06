@@ -24,7 +24,11 @@ $this->title = 'Сериал';
             <tbody>
             <?php foreach ($episodes as $item){ ?>
                 <tr>
-                    <td><img style="width: 80px;" src="<?php echo $item->image ?>"></td>
+                    <td>
+                        <?php $mainImg = $item->getImage(); ?>
+
+                        <?= Html::img($mainImg->getUrl('84x84'), ['alt' => ''])?>
+                    </td>
                     <td><?php echo $item->title ?></td>
                     <td><?php echo $item->rating ?></td>
                     <td><?php echo $item->description_episode ?></td>

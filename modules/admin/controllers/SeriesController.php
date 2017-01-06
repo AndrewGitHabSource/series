@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * SeriesController implements the CRUD actions for series model.
@@ -66,6 +67,11 @@ class SeriesController extends Controller
         $model = new series();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->image = UploadedFile::getInstance($model, 'image');
+            if( $model->image ){
+                $model->upload();
+            }
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -85,6 +91,13 @@ class SeriesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+            $model->image = UploadedFile::getInstance($model, 'image');
+            if( $model->image ){
+                $model->upload();
+            }
+
+
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [

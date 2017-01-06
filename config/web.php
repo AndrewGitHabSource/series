@@ -13,6 +13,23 @@ $config = [
             'class' => 'app\modules\admin\Modules',
             'defaultRoute' => 'series/index',
         ],
+        'yii2images' => [
+            'class' => 'rico\yii2images\Module',
+            'imagesStorePath' => 'images/store', //path to origin images
+            'imagesCachePath' => 'images/cache', //path to resized copies
+            'graphicsLibrary' => 'GD', //but really its better to use 'Imagick'
+            'placeHolderPath' => '@webroot/images/placeHolder.png', // if you want to get placeholder when image not exists, string will be processed by Yii::getAlias
+        ],
+        'controllerMap' => [
+            'elfinder' => [
+                'class' => 'mihaildev\elfinder\PathController',
+                'access' => ['@'],
+                'root' => [
+                    'path' => 'files',
+                    'name' => 'Files'
+                ],
+            ],
+        ],
     ],
     'components' => [
         'request' => [
@@ -45,7 +62,7 @@ $config = [
             ],
         ],
         'db' => require(__DIR__ . '/db.php'),
-        
+
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -57,7 +74,7 @@ $config = [
                 'season/<idSeason:\d+>/episode/<id:\d+>' => 'episode/index',
             ],
         ],
-        
+
     ],
     'params' => $params,
 ];

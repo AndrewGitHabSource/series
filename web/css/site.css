@@ -166,6 +166,10 @@ h1 {
     font: bold 16px Arial, Helvetica, FreeSans, sans-serif;
 }
 
+p {
+    margin: 0;
+}
+
 @media (max-width: 767px) {
     .nav li > form > button.logout {
         display: block;

@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
 
 /* @var $this yii\web\View */
 /* @var $model app\modules\admin\models\Season */
@@ -11,7 +13,7 @@ $this->params['breadcrumbs'][] = ['label' => 'Seasons', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="season-view">
-
+    
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
@@ -30,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'text_description:ntext',
+            'text_description:html',
             'start_date',
             'end_date',
             'id_series',

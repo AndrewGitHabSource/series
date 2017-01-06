@@ -16,6 +16,15 @@ use Yii;
  */
 class Episode extends \yii\db\ActiveRecord
 {
+    public function behaviors()
+    {
+        return [
+            'image' => [
+                'class' => 'rico\yii2images\behaviors\ImageBehave',
+            ]
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -30,10 +39,10 @@ class Episode extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'description_episode', 'id_season', 'image', 'rating'], 'required'],
+            [['title', 'description_episode', 'id_season', 'rating'], 'required'],
             [['description_episode'], 'string'],
             [['id_season', 'rating'], 'integer'],
-            [['title', 'image'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
         ];
     }
 
@@ -50,5 +59,17 @@ class Episode extends \yii\db\ActiveRecord
             'image' => 'Изображение',
             'rating' => 'Рейтинг',
         ];
+    }
+
+    public function upload(){
+        if($this->validate()){
+            $path = 'images/store/' . $this->image->baseName . '.' . $this->image->extension;
+            $this->image->saveAs($path);
+            $this->attachImage($path, true);
+            @unlink($path);
+            return true;
+        }else{
+            return false;
+        }
     }
 }

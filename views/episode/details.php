@@ -10,7 +10,9 @@ $this->title = 'Сериал';
     <h1><?php echo $episode->title ?></h1>
 
     <div class="main-content">
-        <img src="<?php echo $episode->image ?>">
+        <?php $mainImg = $episode->getImage(); ?>
+
+        <?= Html::img($mainImg->getUrl(), ['alt' => ''])?>
 
         <p>Оценка: <?php echo $episode->rating ?></p>
 

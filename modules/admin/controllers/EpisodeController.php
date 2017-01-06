@@ -8,6 +8,8 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+
 
 /**
  * EpisodeController implements the CRUD actions for episode model.
@@ -66,6 +68,11 @@ class EpisodeController extends Controller
         $model = new episode();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->image = UploadedFile::getInstance($model, 'image');
+            if( $model->image ){
+                $model->upload();
+            }
+            
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -83,6 +90,11 @@ class EpisodeController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        $model->image = UploadedFile::getInstance($model, 'image');
+        if( $model->image ){
+            $model->upload();
+        }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
